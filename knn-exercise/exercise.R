@@ -8,7 +8,7 @@ data("iris")
 set.seed(4948493) 
 
 #Sample the Iris data set (70% train, 30% test)
-ir_sample <- sample(1:nrow(iris),size=nrow(iris)*.7)
+ir_sample <- sample(1:nrow(iris),size = nrow(iris)*.7)
 ir_train <- iris[ir_sample,] #Select the 70% of rows
 ir_test <- iris[-ir_sample,] #Select the 30% of rows
 
@@ -22,7 +22,7 @@ accuracy = function(actual, predicted) {
 pred <- knn(train = scale(ir_train[,-5]), 
            test = scale(ir_test[,-5]), 
            cl = ir_train$Species, 
-           k = 40)
+           k = 5)
 
 accuracy(ir_test$Species, pred)
 
@@ -30,7 +30,7 @@ accuracy(ir_test$Species, pred)
 k_to_try = 1:100
 acc_k = rep(x = 0, times = length(k_to_try))
 
-for(i in seq_along(k_to_try)) {
+for (i in seq_along(k_to_try)) {
   pred <- knn(train = scale(ir_train[,-5]), 
              test = scale(ir_test[,-5]), 
              cl = ir_train$Species, 
